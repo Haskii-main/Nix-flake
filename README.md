@@ -9,5 +9,7 @@ To do list.
 5. clean existing code
 6. Add HolyC and a few templeos programs
 7. make a real readme
+ 
    7.1. make better documentation and explanation 
+
    7.2. list all plugins and pkg
