@@ -12,6 +12,7 @@
       htop
       curl
       tree
+      xwayland-satellite
       
       # programmingPackages
       git
@@ -21,7 +22,6 @@
       scala
       
       # gamingPackages
-      steam
       discord
       
       # videomakingPackages

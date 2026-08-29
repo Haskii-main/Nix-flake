@@ -17,7 +17,7 @@
     # Use latest kernel.
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
-    networking.hostName = "flying";
+    networking.hostName = "Windhound";
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     # Enable Flakes
@@ -89,6 +89,17 @@
 
     # Install firefox.
     programs.firefox.enable = true;
+
+    # Install Steam
+    programs.steam.enable = true;
+
+    #Bash and zsh shell aliases
+    programs.bash.shellAliases = {
+      rebuild-laptop = "sudo nixos-rebuild switch --flake .#laptop";
+    };
+    programs.zsh.shellAliases = {
+      rebuild-laptop = "sudo nixos-rebuild switch --flake .#laptop";
+    };
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
