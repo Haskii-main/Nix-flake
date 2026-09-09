@@ -12,6 +12,7 @@
       };
 
       plugins = {
+        # Core UI
         which-key.enable = true;
         web-devicons.enable = true;
         lualine.enable = true;
@@ -19,6 +20,7 @@
         noice.enable = true;
         notify.enable = true;
 
+        # Syntax Parser
         treesitter = {
           enable = true;
           settings.ensure_installed = [
@@ -26,20 +28,21 @@
           ];
         };
 
-        
+        # Navigation Plugins
         telescope.enable = true;
+        fzf-lua.enable = true;
+
+        # Git Integration
         gitsigns.enable = true;
         lazygit.enable = true;
         undotree.enable = true;
         
-        dap = {
-          enable = true;
-          extensions = {
-            dap-ui.enable = true;
-            dap-virtual-text.enable = true;
-          };
-        };
+        # Debugger Setup
+        dap.enable = true;
+        dap-ui.enable = true;
+        dap-virtual-text.enable = true;
 
+        # Language Server Protocol
         lsp = {
           enable = true;
           servers = {
@@ -47,23 +50,28 @@
             ccls.enable = true;
             html.enable = true;
             ts_ls.enable = true;
-
-            hls.enable = true;
+            hls = {
+              enable = true;
+              installGhc = false;
+            };
             pyright.enable = true;
           };
         };
 
+        # Diagnostic Tools
         fidget.enable = true;
         trouble.enable = true;
 
+        # Autocompletion Layout
         lspkind = {
           enable = true;
           cmp.enable = true;
         };
 
-
+        # Rust & Scale Frameworks
         rustaceanvim.enable = true;
 
+        # Code Formatters
         none-ls = {
           enable = true;
           enableLspFormat = false;
@@ -77,11 +85,13 @@
         };
       };
 
+      # Appearance Settings
       colorschemes.tokyonight = {
         enable = true;
         settings.style = "night"; 
       };
 
+      # Global Options
       opts = {
         number = true;
         relativenumber = true;
@@ -92,6 +102,7 @@
         smartindent = true;
       };
 
+      # Completion Sources
       plugins.cmp = {
         enable = true;
         settings = {
@@ -113,6 +124,7 @@
         };
       };
 
+      # Custom Extension Array
       extraPlugins = with pkgs.vimPlugins; [
         vim-vsnip
         ranger-nvim
@@ -123,27 +135,27 @@
         nvim-ts-autotag
         nvim-jdtls
         nvim-metals
+        vim-fugitive
+        nerdtree # FIXED: Shifted safely down out of core option blocks into extraPlugins
       ];
 
+      # HolyC File Type Mapping
+      filetype = {
+        extension = {
+          hc = "c";
+        };
+      };
+
+      # Extra Configuration Blocks
       extraConfigLua = ''
-        -- Initialize Autopairs
         require('nvim-autopairs').setup({})
-
-        -- Initialize HTML Auto-tagging
         require('nvim-ts-autotag').setup({})
-
-        -- Initialize Signature Hints
         require('lsp_signature').setup({})
-
-        -- Initialize Lightbulb Code Actions
         require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
-
-        -- Initialize Markdown Glow Preview
         require('glow').setup({})
-
-        -- Custom Ranger activation map layout command (<leader> + r)
         vim.api.nvim_set_keymap("n", "<leader>r", ":Ranger<CR>", {silent = true, noremap = true})
       '';
     };
   };
 }
+

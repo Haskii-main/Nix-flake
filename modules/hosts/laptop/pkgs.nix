@@ -14,6 +14,7 @@
       tree
       xwayland-satellite
       texliveFull
+      fzf
       
       # programmingPackages
       git
