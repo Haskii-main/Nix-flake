@@ -13,6 +13,7 @@
       curl
       tree
       xwayland-satellite
+      texliveFull
       
       # programmingPackages
       git
@@ -20,6 +21,7 @@
       python3
       rustc
       scala
+      holyc-lang
       
       # gamingPackages
       discord

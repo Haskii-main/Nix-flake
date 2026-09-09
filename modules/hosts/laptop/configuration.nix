@@ -3,32 +3,33 @@
   flake.nixosModules.laptopConfig = { config, pkgs, ... }:
 
   {
+    # Module Imports
     imports =
-      [ # Include the results of the hardware scan.
+      [ 
         self.nixosModules.laptopHardware
         self.nixosModules.niri
         self.nixosModules.laptopPkgs
       ];
 
-    # Bootloader.
+    # Flake Overlays
+    nixpkgs.overlays = [ 
+      inputs.self.overlays.default 
+    ];
+
+    # Boot Management
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
-    # Use latest kernel.
+    # Kernel Selection
     boot.kernelPackages = pkgs.linuxPackages_latest;
     networking.hostName = "Windhound";
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-    # Enable Flakes
+    # Core Features
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-    # Enable networking
     networking.networkmanager.enable = true;
 
-    # Set your time zone.
+    # Localization
     time.timeZone = "America/Atlanta";
-
-    # Select internationalisation properties.
     i18n.defaultLocale = "en_GB.UTF-8";
 
     i18n.extraLocaleSettings = {
@@ -43,40 +44,38 @@
       LC_TIME = "en_IE.UTF-8";
     };
 
-    # Enable the X11 windowing system.
-    # You can disable this if you're only using the Wayland session.
+    # Graphical Server
     services.xserver.enable = true;
 
-    # Enable the KDE Plasma Desktop Environment.
+    # Desktop Manager
     services.displayManager.sddm.enable = true;
     services.desktopManager.plasma6.enable = true;
-    services.displayManager.defaultSession = "plasma"; # Fixes the Niri vs Plasma conflict
+    services.displayManager.defaultSession = "plasma";
 
-    # Configure keymap in X11
+    # Keymaps
     services.xserver.xkb = {
       layout = "us";
       variant = "";
     };
 
-    # Enable CUPS to print documents.
+    # Printing
     services.printing.enable = true;
 
-    # Enable sound with pipewire.
+    # Sound System
     services.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
-    enable = true;
+      enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-
     };
 
-    #bluetooth
+    # Hardware Drivers
     hardware.bluetooth.enable = true;
     services.blueman.enable = true;
 
-    # Define a user account. Don't forget to set a password with ‘passwd’.
+    # User Provisioning
     users.users."bryan" = {
       isNormalUser = true;
       description = "bryan";
@@ -86,13 +85,11 @@
       ];
     };
 
-    # Install firefox.
+    # Core Apps
     programs.firefox.enable = true;
-
-    # Install Steam
     programs.steam.enable = true;
 
-    #Bash and zsh shell aliases
+    # Shell Configuration
     programs.bash.shellAliases = {
       rebuild-laptop = "sudo nixos-rebuild switch --flake .#laptop";
     };
@@ -100,14 +97,10 @@
       rebuild-laptop = "sudo nixos-rebuild switch --flake .#laptop";
     };
 
-# Allow unfree packages
+    # System Settings
     nixpkgs.config.allowUnfree = true;
-
-    # Sets custom Nixvim build as the default system-wide editor
     environment.variables.EDITOR = "nvim";
-
     system.stateVersion = "26.05";
-
   };
-
 }
+

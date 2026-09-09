@@ -18,13 +18,45 @@
       (inputs.import-tree ./modules) 
     ];
 
-    flake.nixosModules.terminal-alias = { config, pkgs, ... }: {
-      programs.bash.shellAliases = {
-        rebuild-laptop = "sudo nixos-rebuild switch --flake .#laptop";
+    perSystem = { config, pkgs, ... }: {
+      # HolyC Compiler
+      packages.holyc-lang = pkgs.stdenv.mkDerivation rec {
+        pname = "holyc-lang";
+        version = "1.0.0";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "Jamesbarford";
+          repo = "holyc-lang";
+          rev = "main";
+          hash = "sha256-S9eRzHY2/1/tOLMZzWJSc2uyIIq5d4roG0jrHzDoTf0=";
+        };
+
+        nativeBuildInputs = with pkgs; [ cmake gnumake gcc ];
+
+        dontUseCmakeConfigure = true;
+
+        installPhase = ''
+          mkdir -p $out/bin
+          cp hcc $out/bin/
+        '';
       };
-      programs.zsh.shellAliases = {
-        rebuild-laptop = "sudo nixos-rebuild switch --flake .#laptop";
+    };
+
+    flake = {
+      # Nixpkgs Overlay
+      overlays.default = final: prev: {
+        holyc-lang = inputs.self.packages.${final.stdenv.hostPlatform.system}.holyc-lang;
+      };
+
+      flakeModules.terminal-alias = { config, pkgs, ... }: {
+        programs.bash.shellAliases = {
+          rebuild-laptop = "sudo nixos-rebuild switch --flake .#laptop";
+        };
+        programs.zsh.shellAliases = {
+          rebuild-laptop = "sudo nixos-rebuild switch --flake .#laptop";
+        };
       };
     };
   };
 }
+
