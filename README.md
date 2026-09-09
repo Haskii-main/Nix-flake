@@ -1,61 +1,68 @@
-My Nixos Config
+# My NixOS Config
 
+A pure, dendritic NixOS configuration powered by flake-parts and import-tree.
 
-OVERVIEW
-A pure dendritic Nixos Systemer with flake-parts and import-tree.
+---
 
-CORE COMPONENTS
-Niri and Noctalia WM
+## Core Components
 
-Custom Nixvim build with
-    #File Tree & Navigation
-    NerdTree
-    Fzf-Lua
-    Telescope
-    Ranger
-    # Git + Source Control
-    Vim-Fugitive
-    LazyGit
-    GitSigns
-    #Core & Maintenance
-    Which-Key
-    Undotree
-    Trouble
-    Glow
-    #LSP
-    LSP Core
-        Nix, C/C++, HolyC, HTML, Java&TypeScript, Haskell, Python, Rust, Scala, Java
-    DAP
+* **Window Managers:** Niri and Noctalia WM
+* **Text Editor:** Custom Nixvim build packed with the following integrations:
 
-NIRI KEYBINDS
-Category       | Keybinding       | Action / Target
----------------+------------------+-----------------------------------
-Core Controls  | Mod + Return     | Launch Kitty Terminal
+### Nixvim Plugins
+<details>
+<summary>Click to expand full plugin list</summary>
 
-               | Mod + B          | Launch Firefox Browser
-               | Mod + Q          | Close Active Window
----------------+------------------+-----------------------------------
-TUI Software   | Mod + E          | Launch custom Nixvim Editor
+#### File Tree & Navigation
+* NerdTree
+* Fzf-Lua
+* Telescope
+* Ranger
 
-               | Mod + Shift + E  | Launch Ranger File Manager
----------------+------------------+-----------------------------------
-GUI Suite      | Mod + D          | Launch Discord
+#### Git & Source Control
+* Vim-Fugitive
+* LazyGit
+* GitSigns
 
-               | Mod + Shift + S  | Launch Steam Station
-               | Mod + M          | Launch Spotify
-               | Mod + I          | Launch GIMP Editor
-               | Mod + V          | Launch Kdenlive Video Suite
----------------+------------------+-----------------------------------
-Vim Navigation | Mod + H / L      | Focus Column Left / Right
+#### Core & Maintenance
+* Which-Key
+* Undotree
+* Trouble
+* Glow
 
-               | Mod + J / K      | Focus Window Down / Up
----------------+------------------+-----------------------------------
-Layout Tweaks  | Mod + Shift + H  | Move Column Left / Right
+#### LSP & Debugging
+* **LSP Core:** Nix, C/C++, HolyC, HTML, Java, JavaScript, TypeScript, Haskell, Python, Rust, Scala
+* **DAP:** Native Debug Adapter Protocol support
+</details>
 
-               | Mod + Shift + L  | Move Column Left / Right
-               | Mod + Shift + J  | Move Window Down / Up
-               | Mod + Shift + K  | Move Window Down / Up
-               | Mod + , / .      | Consume into / Expel from Column
+---
 
-EXTRA COMMANDS
-rebuild-laptop rebuilds the laptop configuration
+## Niri Keybinds
+
+| Category | Keybinding | Action / Target |
+| :--- | :--- | :--- |
+| **Core Controls** | `Mod` + `Return` | Launch Kitty Terminal |
+| | `Mod` + `B` | Launch Firefox Browser |
+| | `Mod` + `Q` | Close Active Window |
+| **TUI Software** | `Mod` + `E` | Launch custom Nixvim Editor |
+| | `Mod` + `Shift` + `E` | Launch Ranger File Manager |
+| **GUI Suite** | `Mod` + `D` | Launch Discord |
+| | `Mod` + `Shift` + `S` | Launch Steam Station |
+| | `Mod` + `M` | Launch Spotify |
+| | `Mod` + `I` | Launch GIMP Editor |
+| | `Mod` + `V` | Launch Kdenlive Video Suite |
+| **Vim Navigation**| `Mod` + `H` / `L` | Focus Column Left / Right |
+| | `Mod` + `J` / `K` | Focus Window Down / Up |
+| **Layout Tweaks** | `Mod` + `Shift` + `H` / `L` | Move Column Left / Right |
+| | `Mod` + `Shift` + `J` / `K` | Move Window Down / Up |
+| | `Mod` + `,` / `.` | Consume into / Expel from Column |
+
+---
+
+## Extra Commands
+
+To rebuild your local system environment, use the custom replication script:
+
+```bash
+rebuild-laptop
+```
