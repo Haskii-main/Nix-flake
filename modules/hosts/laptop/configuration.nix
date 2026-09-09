@@ -16,7 +16,6 @@
 
     # Use latest kernel.
     boot.kernelPackages = pkgs.linuxPackages_latest;
-
     networking.hostName = "Windhound";
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -27,7 +26,7 @@
     networking.networkmanager.enable = true;
 
     # Set your time zone.
-    time.timeZone = "Europe/Dublin";
+    time.timeZone = "America/Atlanta";
 
     # Select internationalisation properties.
     i18n.defaultLocale = "en_GB.UTF-8";
@@ -101,7 +100,7 @@
       rebuild-laptop = "sudo nixos-rebuild switch --flake .#laptop";
     };
 
-    # Allow unfree packages
+# Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 
     # Sets custom Nixvim build as the default system-wide editor
