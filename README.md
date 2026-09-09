@@ -61,7 +61,7 @@ A pure, dendritic NixOS configuration powered by flake-parts and import-tree.
 
 ## Extra Commands
 
-To rebuild your local system environment, use the custom replication script:
+To rebuild the laptop configuration if you make nay changes:
 
 ```bash
 rebuild-laptop
