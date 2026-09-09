@@ -5,9 +5,8 @@ To do list.
 1. add host files for pc
 3. add Spotify to nixvim
 4. clean existing code
-5. Add HolyC and a few templeos programs
-6. make a real readme
+5. make a real readme
  
-   6.1. make better documentation and explanation 
+   5.1. make better documentation and explanation 
 
-   6.2. list all plugins and pkg
+   5.2. list all plugins and pkg
