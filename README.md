@@ -66,3 +66,12 @@ To rebuild the laptop configuration if you make nay changes:
 ```bash
 rebuild-laptop
 ```
+
+###To Do List
+<details>
+<summary> The List Will Get Updated</summary>
+*Make it look nicer
+*Get My PC Running Nix and the dotfiles onto here with a command also (Maybe Saturday)
+*A how to use for people who don't know what they're doing maybe
+*Fix Steam notification appearing in middle of screen and taking the focus
+</details>
