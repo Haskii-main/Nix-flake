@@ -67,7 +67,7 @@ To rebuild the laptop configuration if you make nay changes:
 rebuild-laptop
 ```
 
-###To Do List
+### To Do List
 <details>
 <summary> The List Will Get Updated</summary>
 *Make it look nicer
