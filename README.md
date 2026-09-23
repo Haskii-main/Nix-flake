@@ -66,13 +66,3 @@ To rebuild the laptop configuration if you make nay changes:
 ```bash
 rebuild-laptop
 ```
-
-### To Do List
-<details open>
-<summary><b>task list</b></summary>
-<br>
-
-**Make it look nicer** (Organize sections and polish layout)
-**Migrate PC to Nix** & setup automated installation command *(Target: Saturday)*
-**Write a beginner-friendly usage guide**
-</details>
