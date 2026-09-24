@@ -30,6 +30,12 @@
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     networking.networkmanager.enable = true;
 
+    # Enable Jackett
+    services.jackett={
+      enable = true;
+      openFirewall = false;
+    };
+
     # Set timezone
     time.timeZone = "Europe/Dublin";
     i18n.defaultLocale = "en_GB.UTF-8";
